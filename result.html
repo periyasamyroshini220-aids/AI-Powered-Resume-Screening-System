@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Resume Analysis Results</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>📊 Resume Analysis Results</h1>
+
+    <div class="result-box">
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Candidate Name</th>
+                    <th>Skills Match</th>
+                    <th>Experience Match</th>
+                    <th>Education Match</th>
+                    <th>Total Score</th>
+                    <th>Status</th>
+                    <th>Reason</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for row in results %}
+
+                <tr>
+
+                    <td>{{ row.id }}</td>
+
+                    <td>{{ row.candidate_name }}</td>
+
+                    <td>{{ row.skills_score }}/60</td>
+
+                    <td>{{ row.experience_score }}/20</td>
+
+                    <td>{{ row.education_score }}/20</td>
+
+                    <td>{{ row.total_score }}%</td>
+
+                    <td>{{ row.status }}</td>
+
+                    <td>{{ row.reason }}</td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        <br>
+
+        <a href="/">
+            <button>
+                Back To Home
+            </button>
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>
