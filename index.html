@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI ATS System</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dashboard-btn {
+            padding: 10px 15px;
+            background: #2c3e50;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+        .file-list {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .file-list li {
+            margin: 3px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="top-bar">
+        <h1>🚀 AI Powered Resume Screening System</h1>
+        <a href="/dashboard" class="dashboard-btn">
+            📊 View Dashboard
+        </a>
+    </div>
+
+    <p>Upload resumes and analyze candidates automatically</p>
+
+    <!-- FORM -->
+    <form action="/predict" method="POST" enctype="multipart/form-data">
+
+        <!-- JOB DESCRIPTION -->
+        <h3>Job Description</h3>
+
+        <textarea
+            name="job_description"
+            rows="8"
+            placeholder="Skills: Python, Flask, SQL, Machine Learning
+
+Experience: 2 Years
+
+Education: BE Computer Science"
+            required></textarea>
+
+        <br><br>
+
+        <!-- FILE UPLOAD -->
+        <h3>Upload Resumes</h3>
+
+        <input type="file"
+               name="resume"
+               accept=".pdf"
+               multiple
+               onchange="showFiles(this)"
+               required>
+
+        <!-- FILE PREVIEW -->
+        <ul id="fileList" class="file-list"></ul>
+
+        <br><br>
+
+        <button type="submit">
+            🔍 Analyze Resumes
+        </button>
+
+    </form>
+
+    <!-- RESULTS -->
+    {% if results %}
+
+    <div class="result-box">
+
+        <h2>📊 Analysis Results</h2>
+
+        <table border="1" width="100%">
+
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Candidate</th>
+                    <th>Skills</th>
+                    <th>Experience</th>
+                    <th>Education</th>
+                    <th>Total Score</th>
+                    <th>Status</th>
+                    <th>Reason</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for row in results %}
+                <tr>
+                    <td>{{ row.id }}</td>
+                    <td>{{ row.candidate_name }}</td>
+                    <td>{{ row.skills_score }}/60</td>
+                    <td>{{ row.experience_score }}/20</td>
+                    <td>{{ row.education_score }}/20</td>
+                    <td><b>{{ row.total_score }}%</b></td>
+                    <td>{{ row.status }}</td>
+                    <td>{{ row.reason }}</td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+<!-- JS FOR FILE PREVIEW -->
+<script>
+function showFiles(input) {
+    let list = document.getElementById("fileList");
+    list.innerHTML = "";
+
+    for (let file of input.files) {
+        let li = document.createElement("li");
+        li.textContent = "📄 " + file.name;
+        list.appendChild(li);
+    }
+}
+</script>
+
+</body>
+</html>

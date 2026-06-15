@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATS Dashboard</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+        body {
+            background: #f4f6f9;
+        }
+
+        .top-title {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .cards {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            flex: 1;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .card h2 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .green {
+            border-left: 5px solid green;
+        }
+
+        .red {
+            border-left: 5px solid red;
+        }
+
+        .blue {
+            border-left: 5px solid #3498db;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background: #2c3e50;
+            color: white;
+        }
+
+        .selected {
+            color: green;
+            font-weight: bold;
+        }
+
+        .rejected {
+            color: red;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 95%;
+            margin: auto;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin: 10px 0;
+            padding: 10px 15px;
+            background: #2c3e50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- BACK BUTTON -->
+    <a href="/" class="back-btn">⬅ Back to Upload</a>
+
+    <h1 class="top-title">📊 ATS Dashboard</h1>
+
+    <!-- STATS CARDS -->
+    <div class="cards">
+
+        <div class="card blue">
+            <h2>{{ total }}</h2>
+            <p>Total Candidates</p>
+        </div>
+
+        <div class="card green">
+            <h2>{{ selected }}</h2>
+            <p>Selected</p>
+        </div>
+
+        <div class="card red">
+            <h2>{{ rejected }}</h2>
+            <p>Rejected</p>
+        </div>
+
+    </div>
+
+    <!-- TABLE -->
+    <table>
+
+        <thead>
+            <tr>
+                <th>Candidate</th>
+                <th>Skills</th>
+                <th>Experience</th>
+                <th>Education</th>
+                <th>Total Score</th>
+                <th>Status</th>
+                <th>Reason</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for row in data %}
+            <tr>
+
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}/60</td>
+                <td>{{ row[2] }}/20</td>
+                <td>{{ row[3] }}/20</td>
+
+                <td><b>{{ row[4] }}%</b></td>
+
+                <td>
+                    {% if row[5] == "SELECTED ✅" %}
+                        <span class="selected">{{ row[5] }}</span>
+                    {% else %}
+                        <span class="rejected">{{ row[5] }}</span>
+                    {% endif %}
+                </td>
+
+                <td>{{ row[6] }}</td>
+
+            </tr>
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</body>
+</html>
