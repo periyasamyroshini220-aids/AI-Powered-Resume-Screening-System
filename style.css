@@ -1,0 +1,158 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#0f172a,#1e293b);
+    min-height:100vh;
+    padding:40px;
+}
+
+.container{
+    width:95%;
+    max-width:1400px;
+    margin:auto;
+    background:#1e293b;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.4);
+}
+
+h1{
+    text-align:center;
+    color:#38bdf8;
+    margin-bottom:30px;
+    font-size:34px;
+}
+
+h2{
+    color:#22c55e;
+    margin-bottom:20px;
+}
+
+h3{
+    color:#ffffff;
+    margin-bottom:10px;
+}
+
+textarea{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    background:#334155;
+    color:white;
+    font-size:15px;
+    resize:vertical;
+}
+
+input[type="file"]{
+    width:100%;
+    padding:12px;
+    background:#334155;
+    color:white;
+    border-radius:10px;
+    border:none;
+}
+
+button{
+    width:100%;
+    padding:15px;
+    background:#22c55e;
+    color:white;
+    border:none;
+    border-radius:10px;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#16a34a;
+    transform:translateY(-2px);
+}
+
+.result-box{
+    margin-top:40px;
+    background:#0f172a;
+    padding:25px;
+    border-radius:15px;
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+    background:#1e293b;
+}
+
+table th{
+    background:#38bdf8;
+    color:#0f172a;
+    padding:15px;
+    text-align:center;
+    font-weight:bold;
+}
+
+table td{
+    padding:12px;
+    text-align:center;
+    color:white;
+    border:1px solid #334155;
+}
+
+table tr:nth-child(even){
+    background:#263548;
+}
+
+table tr:hover{
+    background:#334155;
+}
+
+.selected{
+    color:#22c55e;
+    font-weight:bold;
+}
+
+.rejected{
+    color:#ef4444;
+    font-weight:bold;
+}
+
+.success{
+    color:#22c55e;
+    font-weight:bold;
+}
+
+.warning{
+    color:#facc15;
+    font-weight:bold;
+}
+
+.error{
+    color:#ef4444;
+    font-weight:bold;
+}
+
+::-webkit-scrollbar{
+    width:8px;
+    height:8px;
+}
+
+::-webkit-scrollbar-track{
+    background:#1e293b;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#38bdf8;
+    border-radius:10px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#0ea5e9;
+}
